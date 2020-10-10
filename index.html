@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>Quick Pick</title>
+</head>
+
+<body>
+	<script language="javascript">
+		QuickPick = new Array(5);
+		for (n = 0; n < QuickPick.length; n++)
+			QuickPick[n] = parseInt(Math.random() * 47 + 1);
+		QuickPick.sort(function (a, b) {return a - b});
+		LuckyBall = parseInt(Math.random() * 17 + 1);
+
+		WinningNum = prompt("Enter winning numbers separated by a space", "");
+		LuckyBallNum = prompt("Enter lucky ball number", "");
+
+		WinningNumArr = WinningNum.split(" ");
+        
+		QuickPickMatch = 0;
+		LuckyBallMatch = 0;
+		for (n = 0; n < WinningNumArr.length; n++)
+		{
+			WinningNumArr[n] = parseInt(WinningNumArr[n]);
+			if (WinningNumArr.indexOf(QuickPick[n]) != -1)
+			{
+				QuickPickMatch++;
+				WinningNumArr[n] = 0;
+			}
+		}
+
+		if (LuckyBall == LuckyBallNum)
+			LuckyBallMatch++;
+
+		WinningNumArr.sort(function (a, b) {return a - b});
+
+		if (QuickPickMatch == 5 && LuckyBallMatch == 1)
+			message = "$7,000 a WEEK for LIFE";
+		else if (QuickPickMatch == 5 & LuckyBallMatch == 0)
+			message = "$25,000 a YEAR for LIFE";
+		else if (QuickPickMatch == 4 && LuckyBallMatch == 1)
+			message = "$5000";
+		else if (QuickPickMatch == 4 && LuckyBallMatch == 0)
+			message = "$200";
+		else if (QuickPickMatch == 3 && LuckyBallMatch == 1)
+			message = "$150";
+		else if (QuickPickMatch == 3 && LuckyBallMatch == 0)
+			message = "$20";
+		else if (QuickPickMatch == 2 && LuckyBallMatch == 1)
+			message = "$25";
+		else if (QuickPickMatch == 2 && LuckyBallMatch == 0)
+			message = "$3";
+		else if (QuickPickMatch == 1 && LuckyBallMatch == 1)
+			message = "$6";
+		else if (QuickPickMatch == 0 && LuckyBallMatch == 1)
+			message = "$4";
+		else
+			message = "$0";
+
+		document.write ("The quick pick numbers are: " + QuickPick[0] + " " +
+			QuickPick[1] + " " + QuickPick[2] + " " + QuickPick[3] + " " +
+			QuickPick[4] + "<br>");
+		document.write ("The lucky ball number is " + LuckyBall + "<br><br>");
+
+		document.write ("The winning nubmers are: " + WinningNumArr[0] + " " +
+			WinningNumArr[1] + " " + WinningNumArr[2] + " " + 
+			WinningNumArr[3] + " " + WinningNumArr[4] + "<br>");
+		document.write ("The lukcy ball number is " + LuckyBallNum + "<br><br>");
+
+		if (message == "$0")
+			document.write ("You lost! Your payout is: " + message + "<br>");
+		else
+			document.write ("You win! Your payout is: " + message + "<br>");
+	</script>
+</body>
+</html>
